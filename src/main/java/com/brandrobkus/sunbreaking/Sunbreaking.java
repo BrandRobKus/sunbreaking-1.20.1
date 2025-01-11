@@ -1,5 +1,8 @@
 package com.brandrobkus.sunbreaking;
 
+import com.brandrobkus.sunbreaking.item.ModItemGroups;
+import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -11,6 +14,8 @@ public class Sunbreaking implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		ModItemGroups.registerItemGroups();
+		ModItems.registerModItems();
+		ModSounds.registerSounds();
 	}
 }
