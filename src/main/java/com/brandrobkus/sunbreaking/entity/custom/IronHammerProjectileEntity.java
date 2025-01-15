@@ -17,58 +17,39 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class HammerProjectileEntity extends PersistentProjectileEntity {
+public class IronHammerProjectileEntity extends PersistentProjectileEntity {
     private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(net.minecraft.entity.projectile.TridentEntity.class, TrackedDataHandlerRegistry.BYTE);
     private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(net.minecraft.entity.projectile.TridentEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private ItemStack hammerStack = new ItemStack(ModItems.HAMMER_OF_SOL);
+    private ItemStack ironHammerStack = new ItemStack(ModItems.IRON_HAMMER);
     private boolean dealtDamage;
     public int returnTimer;
 
-    // New field to store Z-axis rotation and landing status
-    private float rotationZ = 0.0f;
+
+    private float rotationX = 0.0f;
     private boolean hasLanded = false;
 
-    public HammerProjectileEntity(EntityType<? extends HammerProjectileEntity> entityType, World world) {
+    public IronHammerProjectileEntity(EntityType<? extends IronHammerProjectileEntity> entityType, World world) {
         super(entityType, world);
-        this.hammerStack = new ItemStack(ModItems.HAMMER_OF_SOL);
+        this.ironHammerStack = new ItemStack(ModItems.IRON_HAMMER);
     }
 
-    public HammerProjectileEntity(World world, LivingEntity owner, ItemStack stack) {
-        super(ModEntities.HAMMER_PROJECTILE, owner, world);
-        this.hammerStack = stack.copy();
+    public IronHammerProjectileEntity(World world, LivingEntity owner, ItemStack stack) {
+        super(ModEntities.IRON_HAMMER_PROJECTILE, owner, world);
+        this.ironHammerStack = stack.copy();
         this.dataTracker.set(LOYALTY, (byte) ModEnchantmentHelper.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
-
-        this.hasSunspot = hasSunspot(stack);
-        this.hasIgnition = hasIgnition(stack);
     }
 
-    private boolean hasAshen = false;
-    private boolean hasIgnition = false;
-    private boolean hasSunspot = false;
-
-    private boolean hasAshen(ItemStack stack) {
-        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.ASHEN);
-    }
-
-    private boolean hasSunspot(ItemStack stack) {
-        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.SUNSPOT);
-    }
-
-    private boolean hasIgnition(ItemStack stack) {
-        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.IGNITION);
-    }
-
-    public ItemStack getHammerStack() {
-        return hammerStack != null ? hammerStack : ItemStack.EMPTY;
+    public ItemStack getIronHammerStack() {
+        return ironHammerStack != null ? ironHammerStack : ItemStack.EMPTY;
     }
 
     @Override
@@ -84,9 +65,9 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
 
         // Rotate along Z-axis if the hammer is in the air and has not landed
         if (!hasLanded) {
-            this.rotationZ += 20.0f; // Adjust speed of rotation here
-            if (this.rotationZ > 360.0f) {
-                this.rotationZ -= 360.0f; // Keep rotation between 0 and 360 degrees
+            this.rotationX += 20.0f; // Adjust speed of rotation here
+            if (this.rotationX > 360.0f) {
+                this.rotationX -= 360.0f; // Keep rotation between 0 and 360 degrees
             }
         }
 
@@ -94,7 +75,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         int i = this.dataTracker.get(LOYALTY);
         if (i > 0 && (this.dealtDamage || this.isNoClip()) && entity != null) {
             if (!this.isOwnerAlive()) {
-                if (!this.getWorld().isClient && this.pickupType == PersistentProjectileEntity.PickupPermission.ALLOWED) {
+                if (!this.getWorld().isClient && this.pickupType == PickupPermission.ALLOWED) {
                     this.dropStack(this.asItemStack(), 0.1F);
                 }
 
@@ -117,28 +98,14 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
             }
         }
             if (this.inGroundTime > 4 && !hasLanded) {
-                // Trigger explosion only once when the hammer lands
-                this.triggerExplosion();
-
                 if (this.dataTracker.get(LOYALTY) == 0) {
-                    this.rotationZ = 30.0f; // Set rotation to 150 degrees
+                    this.rotationX = -90.0f;
                 }
-
-                // Stop movement and prevent further changes
-                this.setVelocity(0, 0, 0); // Stop movement
-
-                // Mark as landed to prevent repeating actions
+                this.setVelocity(0, 0, 0);
                 this.hasLanded = true;
             }
-
-            // Prevent repeated explosions after landing
-            if (this.inGroundTime > 4 && !this.dealtDamage) {
-                this.dealtDamage = true; // Ensure explosion only happens once
-            }
-
             super.tick();
         }
-
 
     private boolean isOwnerAlive() {
         Entity entity = this.getOwner();
@@ -147,7 +114,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
 
     @Override
     protected ItemStack asItemStack() {
-        return this.hammerStack.copy();
+        return this.ironHammerStack.copy();
     }
 
     public boolean isEnchanted() {
@@ -165,9 +132,8 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         Entity entity = entityHitResult.getEntity();
         float f = 8.0F;
 
-        // Additional damage logic if needed
         if (entity instanceof LivingEntity livingEntity) {
-            f += EnchantmentHelper.getAttackDamage(this.hammerStack, livingEntity.getGroup());
+            f += EnchantmentHelper.getAttackDamage(this.ironHammerStack, livingEntity.getGroup());
         }
 
         Entity entity2 = this.getOwner();
@@ -178,77 +144,21 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
-
             if (entity instanceof LivingEntity livingEntity2) {
                 if (entity2 instanceof LivingEntity) {
                     EnchantmentHelper.onUserDamaged(livingEntity2, entity2);
                     EnchantmentHelper.onTargetDamaged((LivingEntity) entity2, livingEntity2);
                 }
-
                 this.onHit(livingEntity2);
             }
         }
-        this.triggerExplosion();
         this.setVelocity(this.getVelocity().multiply(-0.01, -0.1, -0.01));
         this.playSound(soundEvent, 0.7F, 1.0F);
     }
-
-    private void triggerExplosion() {
-        System.out.println("Triggering explosion!");
-
-        if (!this.getWorld().isClient) {
-            BlockPos impactPos = this.getBlockPos();
-            BlockPos adjustedPos = impactPos.up(1);
-            
-            if (this.getOwner() instanceof PlayerEntity player) {
-                ItemStack stack = this.hammerStack;
-
-                System.out.println("Player's main hand item: " + stack.getItem().getName().getString());
-
-                boolean hasAshen = hasAshen(stack);
-
-                System.out.println("Hammer has ASHEN enchantment: " + hasAshen);
-
-                float blastRadius = 2.0F;
-
-                if (hasAshen) {
-                    blastRadius = 4.0F;
-                }
-
-                this.hasIgnition = hasIgnition(stack);
-
-                World.ExplosionSourceType explosionSourceType = this.hasIgnition ?
-                        World.ExplosionSourceType.BLOCK : World.ExplosionSourceType.NONE;
-
-                // Check for the 'hasSunspot' boolean and modify block destruction behavior
-                boolean allowBlockDestruction = this.hasSunspot;  // If hasSunspot is true, allow block destruction
-
-                // Debug: Log the effect of the Sunspot condition
-                System.out.println("Hammer has SUNSPOT effect: " + (this.hasSunspot ? "Allowing block destruction" : "Not allowing block destruction"));
-
-                // Trigger explosion with the correct block destruction behavior
-                this.getWorld().createExplosion(
-                        this,
-                        adjustedPos.getX(),
-                        adjustedPos.getY(),
-                        adjustedPos.getZ(),
-                        blastRadius,
-                        allowBlockDestruction,
-                        explosionSourceType
-                );
-
-                // Debug: Explosion triggered log
-                System.out.println("Explosion triggered with radius: " + blastRadius + ", block destruction: " + allowBlockDestruction);
-            }
-        }
-    }
-
-
     @Override
     protected boolean tryPickup(PlayerEntity player) {
         return super.tryPickup(player) || this.isNoClip() && this.isOwner(player) && player.getInventory().insertStack(this.asItemStack());
     }
-
     @Override
     protected SoundEvent getHitSound() {
         return ModSounds.HAMMER_HIT;
@@ -260,16 +170,14 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
             super.onPlayerCollision(player);
         }
     }
-
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("HammerOfSol", NbtCompound.COMPOUND_TYPE)) {
-            this.hammerStack = ItemStack.fromNbt(nbt.getCompound("HammerOfSol"));
+        if (nbt.contains("IronHammer", NbtCompound.COMPOUND_TYPE)) {
+            this.ironHammerStack = ItemStack.fromNbt(nbt.getCompound("IronHammer"));
         }
-
         this.dealtDamage = nbt.getBoolean("DealtDamage");
-        this.rotationZ = nbt.getFloat("RotationZ");
+        this.rotationX = nbt.getFloat("RotationX");
         this.hasLanded = nbt.getBoolean("HasLanded");
 
         if (nbt.contains("LOYALTY", NbtCompound.BYTE_TYPE)) {
@@ -280,10 +188,10 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.put("HammerOfSol", this.hammerStack.writeNbt(new NbtCompound()));
+        nbt.put("IronHammer", this.ironHammerStack.writeNbt(new NbtCompound()));
         nbt.putBoolean("DealtDamage", this.dealtDamage);
 
-        nbt.putFloat("RotationZ", this.rotationZ);
+        nbt.putFloat("RotationX", this.rotationX);
         nbt.putBoolean("HasLanded", this.hasLanded);
 
         nbt.putByte("LOYALTY", this.dataTracker.get(LOYALTY));
@@ -293,14 +201,14 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
     @Override
     public void age() {
         int i = this.dataTracker.get(LOYALTY);
-        if (this.pickupType != PersistentProjectileEntity.PickupPermission.ALLOWED || i <= 0) {
+        if (this.pickupType != PickupPermission.ALLOWED || i <= 0) {
             super.age();
         }
     }
 
     @Override
     protected float getDragInWater() {
-        return 0.75F;
+        return 0.65F;
     }
 
     @Override
@@ -309,7 +217,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
     }
 
     // Add getter for rotationZ
-    public float getRotationZ() {
-        return this.rotationZ;
+    public float getRotationX() {
+        return this.rotationX;
     }
 }

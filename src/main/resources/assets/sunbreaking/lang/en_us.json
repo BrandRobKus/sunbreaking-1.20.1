@@ -1,5 +1,18 @@
 {
-  "itemgroup.hammer": "Hammer Group",
+  "itemgroup.hammer": "Sunbreaking",
   "item.sunbreaking.hammer_of_sol": "Hammer of Sol",
-  "item.sunbreaking.solar_light": "Solar Light"
+  "item.sunbreaking.iron_hammer": "Iron Throwing Hammer",
+  "item.sunbreaking.solar_light": "Solar Light",
+  "item.sunbreaking.solar_smithing_template": "Solar Smithing Template",
+  "enchantment.sunbreaking.recall": "Recall",
+  "enchantment.sunbreaking.ignition": "Ignition",
+  "enchantment.sunbreaking.sunspot": "Sunspot",
+  "enchantment.sunbreaking.ashen": "Ashen",
+  "enchantment.sunbreaking.bulk": "Bulk",
+
+  "item.sunbreaking.solar_upgrade_template.title": "Iron Hammer",
+  "item.sunbreaking.solar_upgrade_template.base_slot": "Solar Light",
+  "item.sunbreaking.solar_upgrade_template.addition_slot": "Solar Upgrade",
+  "item.sunbreaking.solar_upgrade_template.apply": "Apply",
+  "item.sunbreaking.solar_upgrade_template.base": "Base"
 }

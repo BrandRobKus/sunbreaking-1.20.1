@@ -16,7 +16,9 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.SOLAR_LIGHT)).entries((displayContext, entries) -> {
 
                         entries.add(ModItems.HAMMER_OF_SOL);
+                        entries.add(ModItems.IRON_HAMMER);
                         entries.add(ModItems.SOLAR_LIGHT);
+                        entries.add(ModItems.SOLAR_UPGRADE_SMITHING_TEMPLATE);
 
                     }).build());
 

@@ -1,0 +1,20 @@
+{
+  "hammer_throw": {
+    "subtitle": "sounds.sunbreaking.hammer_throw",
+    "sounds": [
+      "sunbreaking:hammer_throw"
+    ]
+  },
+  "hammer_hit": {
+    "subtitle": "sounds.sunbreaking.hammer_hit",
+    "sounds": [
+      "sunbreaking:hammer_hit"
+    ]
+  },
+  "hammer_return": {
+    "subtitle": "sounds.sunbreaking.hammer_return",
+    "sounds": [
+      "sunbreaking:hammer_return"
+    ]
+  }
+}

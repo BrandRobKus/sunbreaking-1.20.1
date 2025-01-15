@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "sunbreaking:item/hammer",
-		"particle": "sunbreaking:item/hammer"
+		"0": "sunbreaking:item/hammer_thrown",
+		"particle": "sunbreaking:item/hammer_thrown"
 	},
 	"elements": [
 		{

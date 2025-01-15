@@ -8,6 +8,8 @@ import net.minecraft.util.Identifier;
 
 public class ModSounds {
     public static final SoundEvent HAMMER_THROW = registerSoundEvent("hammer_throw");
+    public static final SoundEvent HAMMER_HIT = registerSoundEvent("hammer_hit");
+    public static final SoundEvent HAMMER_RETURN = registerSoundEvent("hammer_return");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = new Identifier(Sunbreaking.MOD_ID, name);
@@ -16,6 +18,7 @@ public class ModSounds {
         Sunbreaking.LOGGER.info("Registered sound: " + id); // Log the sound registration
         return soundEvent;
     }
+
 
 
     public static void registerSounds() {

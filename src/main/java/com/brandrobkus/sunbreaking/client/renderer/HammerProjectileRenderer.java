@@ -31,13 +31,16 @@ public class HammerProjectileRenderer extends EntityRenderer<HammerProjectileEnt
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, hammerEntity.prevYaw, hammerEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(tickDelta, hammerEntity.prevPitch, hammerEntity.getPitch())));
 
-
         // Apply rotation to correct the hammer's orientation
-        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F)); // Rotate 180° along the Y-axis
-        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(45.0F));  // Tilt 45° along the X-axis
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(45.0F));
+
+        // Rotate along the X-axis as the projectile flies through the air
+        float rotationZ = hammerEntity.getRotationZ();
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rotationZ));
 
         // Adjust the hammer's position slightly if it's too far forward/backward
-        matrixStack.translate(0.0F, -0.6F, 0.0F); // Adjust the Y translation to pull it back
+        matrixStack.translate(0.1F, -0.3F, 0.0F);
 
         // Render the hammer item with the transformation mode set to GROUND
         ItemStack hammerItem = hammerEntity.getHammerStack();
@@ -46,7 +49,6 @@ public class HammerProjectileRenderer extends EntityRenderer<HammerProjectileEnt
         matrixStack.pop();
         super.render(hammerEntity, yaw, tickDelta, matrixStack, vertexConsumers, light);
     }
-
 
     @Override
     public Identifier getTexture(HammerProjectileEntity entity) {

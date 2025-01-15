@@ -1,14 +1,12 @@
 package com.brandrobkus.sunbreaking.item;
 
-import com.brandrobkus.sunbreaking.Sunbreaking;
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
-import com.brandrobkus.sunbreaking.entity.custom.HammerProjectileEntity;
+import com.brandrobkus.sunbreaking.entity.custom.IronHammerProjectileEntity;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -16,7 +14,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.TridentItem;
 import net.minecraft.sound.SoundCategory;
@@ -27,19 +24,17 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class HammerItem extends TridentItem {
+public class IronHammerItem extends TridentItem {
     public static final int USE_THRESHOLD = 10;
-    public static final float PROJECTILE_SPEED = 2.5F;
+    public static final float PROJECTILE_SPEED = 2.0F;
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
-    public HammerItem(Item.Settings settings) {
-        super(settings.maxDamage(350)); // Set max durability here
+    public IronHammerItem(Settings settings) {
+        super(settings.maxDamage(250)); // Set max durability here
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(
                 EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 8.0, EntityAttributeModifier.Operation.ADDITION)
+                new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 6.0, EntityAttributeModifier.Operation.ADDITION)
         );
         builder.put(
                 EntityAttributes.GENERIC_ATTACK_SPEED,
@@ -73,24 +68,24 @@ public class HammerItem extends TridentItem {
                 if (!world.isClient) {
                     stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(user.getActiveHand()));
 
-                    HammerProjectileEntity hammerEntity = new HammerProjectileEntity(world, playerEntity, stack);
+                    IronHammerProjectileEntity IronHammerEntity = new IronHammerProjectileEntity(world, playerEntity, stack);
 
                     // Determine projectile speed based on Bulk enchantment
-                    float velocity = hasBulk(stack) ? PROJECTILE_SPEED / 1.33F : PROJECTILE_SPEED;
+                    float velocity = hasBulk(stack) ? PROJECTILE_SPEED / 2.0F : PROJECTILE_SPEED;
 
                     // Debug: Log velocity adjustment
-                    System.out.println("HammerProjectileEntity velocity: " + velocity);
+                    System.out.println("IronHammerProjectileEntity velocity: " + velocity);
 
-                    hammerEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, velocity, 1.0F);
+                    IronHammerEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, velocity, 1.0F);
 
                     if (playerEntity.getAbilities().creativeMode) {
-                        hammerEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+                        IronHammerEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                     }
 
                     // Spawn the entity
-                    world.spawnEntity(hammerEntity);
+                    world.spawnEntity(IronHammerEntity);
 
-                    world.playSoundFromEntity(null, hammerEntity, ModSounds.HAMMER_THROW, SoundCategory.PLAYERS,
+                    world.playSoundFromEntity(null, IronHammerEntity, ModSounds.HAMMER_THROW, SoundCategory.PLAYERS,
                             2.0F, 1.0F);
 
                     if (!playerEntity.getAbilities().creativeMode) {
@@ -142,7 +137,7 @@ public class HammerItem extends TridentItem {
                         new EntityAttributeModifier(
                                 ATTACK_DAMAGE_MODIFIER_ID, // Same UUID ensures replacement
                                 "Bulk Tool modifier",
-                                12.0, // Replace with 12.0 (8 base + 4 Bulk)
+                                10.0, // Replace with 12.0 (8 base + 4 Bulk)
                                 EntityAttributeModifier.Operation.ADDITION
                         )
                 );
