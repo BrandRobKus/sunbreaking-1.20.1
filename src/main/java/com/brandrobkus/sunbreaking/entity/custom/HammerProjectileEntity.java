@@ -32,7 +32,6 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
     private boolean dealtDamage;
     public int returnTimer;
 
-    // New field to store Z-axis rotation and landing status
     private float rotationZ = 0.0f;
     private boolean hasLanded = false;
 
@@ -47,24 +46,24 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         this.dataTracker.set(LOYALTY, (byte) ModEnchantmentHelper.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
 
-        this.hasSunspot = hasSunspot(stack);
-        this.hasIgnition = hasIgnition(stack);
+        this.hasChar = hasChar(stack);
+        this.hasEruption = hasEruption(stack);
     }
 
     private boolean hasAshen = false;
-    private boolean hasIgnition = false;
-    private boolean hasSunspot = false;
+    private boolean hasEruption = false;
+    private boolean hasChar = false;
 
     private boolean hasAshen(ItemStack stack) {
         return EnchantmentHelper.get(stack).containsKey(ModEnchantments.ASHEN);
     }
 
-    private boolean hasSunspot(ItemStack stack) {
-        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.SUNSPOT);
+    private boolean hasChar(ItemStack stack) {
+        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.CHAR);
     }
 
-    private boolean hasIgnition(ItemStack stack) {
-        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.IGNITION);
+    private boolean hasEruption(ItemStack stack) {
+        return EnchantmentHelper.get(stack).containsKey(ModEnchantments.ERUPTION);
     }
 
     public ItemStack getHammerStack() {
@@ -82,11 +81,11 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
     public void tick() {
         super.tick();
 
-        // Rotate along Z-axis if the hammer is in the air and has not landed
+
         if (!hasLanded) {
-            this.rotationZ += 20.0f; // Adjust speed of rotation here
+            this.rotationZ += 20.0f;
             if (this.rotationZ > 360.0f) {
-                this.rotationZ -= 360.0f; // Keep rotation between 0 and 360 degrees
+                this.rotationZ -= 360.0f;
             }
         }
 
@@ -117,28 +116,20 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
             }
         }
             if (this.inGroundTime > 4 && !hasLanded) {
-                // Trigger explosion only once when the hammer lands
                 this.triggerExplosion();
 
                 if (this.dataTracker.get(LOYALTY) == 0) {
                     this.rotationZ = 30.0f; // Set rotation to 150 degrees
                 }
-
-                // Stop movement and prevent further changes
                 this.setVelocity(0, 0, 0); // Stop movement
-
-                // Mark as landed to prevent repeating actions
                 this.hasLanded = true;
             }
-
-            // Prevent repeated explosions after landing
             if (this.inGroundTime > 4 && !this.dealtDamage) {
-                this.dealtDamage = true; // Ensure explosion only happens once
+                this.dealtDamage = true;
             }
 
             super.tick();
         }
-
 
     private boolean isOwnerAlive() {
         Entity entity = this.getOwner();
@@ -215,18 +206,15 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
                     blastRadius = 4.0F;
                 }
 
-                this.hasIgnition = hasIgnition(stack);
+                this.hasEruption = hasEruption(stack);
 
-                World.ExplosionSourceType explosionSourceType = this.hasIgnition ?
+                World.ExplosionSourceType explosionSourceType = this.hasEruption ?
                         World.ExplosionSourceType.BLOCK : World.ExplosionSourceType.NONE;
 
-                // Check for the 'hasSunspot' boolean and modify block destruction behavior
-                boolean allowBlockDestruction = this.hasSunspot;  // If hasSunspot is true, allow block destruction
+                boolean allowBlockDestruction = this.hasChar;
 
-                // Debug: Log the effect of the Sunspot condition
-                System.out.println("Hammer has SUNSPOT effect: " + (this.hasSunspot ? "Allowing block destruction" : "Not allowing block destruction"));
+                System.out.println("Hammer has Char effect: " + (this.hasChar ? "Allowing block destruction" : "Not allowing block destruction"));
 
-                // Trigger explosion with the correct block destruction behavior
                 this.getWorld().createExplosion(
                         this,
                         adjustedPos.getX(),

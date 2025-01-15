@@ -6,14 +6,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class HammerSunspotEnchantment extends Enchantment {
-    public HammerSunspotEnchantment(Rarity weight, EquipmentSlot... slot) {
+public class HammerEruptionEnchantment extends Enchantment {
+    public HammerEruptionEnchantment(Rarity weight, EquipmentSlot... slot) {
         super(weight, EnchantmentTarget.TRIDENT, slot);
     }
 
     @Override
     public int getMinPower(int level) {
-        return 15;
+        return 20;
     }
 
     @Override

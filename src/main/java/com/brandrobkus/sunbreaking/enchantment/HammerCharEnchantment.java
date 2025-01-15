@@ -6,14 +6,14 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class HammerIgnitionEnchantment extends Enchantment {
-    public HammerIgnitionEnchantment(Rarity weight, EquipmentSlot... slot) {
+public class HammerCharEnchantment extends Enchantment {
+    public HammerCharEnchantment(Rarity weight, EquipmentSlot... slot) {
         super(weight, EnchantmentTarget.TRIDENT, slot);
     }
 
     @Override
     public int getMinPower(int level) {
-        return 20;
+        return 15;
     }
 
     @Override

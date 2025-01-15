@@ -1,7 +1,6 @@
 package com.brandrobkus.sunbreaking.entity.custom;
 
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantmentHelper;
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
 import com.brandrobkus.sunbreaking.entity.ModEntities;
 import com.brandrobkus.sunbreaking.item.ModItems;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
@@ -20,7 +19,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -63,11 +61,10 @@ public class IronHammerProjectileEntity extends PersistentProjectileEntity {
     public void tick() {
         super.tick();
 
-        // Rotate along Z-axis if the hammer is in the air and has not landed
         if (!hasLanded) {
-            this.rotationX += 20.0f; // Adjust speed of rotation here
+            this.rotationX += 20.0f;
             if (this.rotationX > 360.0f) {
-                this.rotationX -= 360.0f; // Keep rotation between 0 and 360 degrees
+                this.rotationX -= 360.0f;
             }
         }
 

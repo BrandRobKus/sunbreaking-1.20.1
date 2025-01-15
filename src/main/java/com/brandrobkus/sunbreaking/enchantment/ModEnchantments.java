@@ -1,7 +1,6 @@
 package com.brandrobkus.sunbreaking.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -17,16 +16,16 @@ public class ModEnchantments {
             )
     );
 
-    public static final Enchantment SUNSPOT = Registry.register(
+    public static final Enchantment CHAR = Registry.register(
             Registries.ENCHANTMENT,
-            new Identifier("sunbreaking", "sunspot"),
-            new HammerSunspotEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND)
+            new Identifier("sunbreaking", "char"),
+            new HammerCharEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND)
     );
 
-    public static final Enchantment IGNITION = Registry.register(
+    public static final Enchantment ERUPTION = Registry.register(
             Registries.ENCHANTMENT,
-            new Identifier("sunbreaking", "ignition"),
-            new HammerIgnitionEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND)
+            new Identifier("sunbreaking", "eruption"),
+            new HammerEruptionEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlot.MAINHAND)
     );
 
     public static final Enchantment BULK = Registry.register(

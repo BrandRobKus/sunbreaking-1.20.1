@@ -1,6 +1,5 @@
 package com.brandrobkus.sunbreaking.item;
 
-import com.brandrobkus.sunbreaking.Sunbreaking;
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
 import com.brandrobkus.sunbreaking.entity.custom.HammerProjectileEntity;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
@@ -8,7 +7,6 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -35,7 +33,7 @@ public class HammerItem extends TridentItem {
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     public HammerItem(Item.Settings settings) {
-        super(settings.maxDamage(350)); // Set max durability here
+        super(settings.maxDamage(350));
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(
                 EntityAttributes.GENERIC_ATTACK_DAMAGE,
@@ -75,10 +73,8 @@ public class HammerItem extends TridentItem {
 
                     HammerProjectileEntity hammerEntity = new HammerProjectileEntity(world, playerEntity, stack);
 
-                    // Determine projectile speed based on Bulk enchantment
                     float velocity = hasBulk(stack) ? PROJECTILE_SPEED / 1.33F : PROJECTILE_SPEED;
 
-                    // Debug: Log velocity adjustment
                     System.out.println("HammerProjectileEntity velocity: " + velocity);
 
                     hammerEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, velocity, 1.0F);
@@ -87,7 +83,6 @@ public class HammerItem extends TridentItem {
                         hammerEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                     }
 
-                    // Spawn the entity
                     world.spawnEntity(hammerEntity);
 
                     world.playSoundFromEntity(null, hammerEntity, ModSounds.HAMMER_THROW, SoundCategory.PLAYERS,
@@ -136,45 +131,28 @@ public class HammerItem extends TridentItem {
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 
             if (hasBulk(stack)) {
-                // Bulk-specific attributes
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                ATTACK_DAMAGE_MODIFIER_ID, // Same UUID ensures replacement
-                                "Bulk Tool modifier",
-                                12.0, // Replace with 12.0 (8 base + 4 Bulk)
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_DAMAGE_MODIFIER_ID, "Bulk Tool modifier",12.0,
+                                EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
-                                ATTACK_SPEED_MODIFIER_ID, // Same UUID ensures replacement
-                                "Bulk Tool modifier",
-                                -3.4F, // Replace with -3.4 (-2.9 base - 0.5 Bulk)
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_SPEED_MODIFIER_ID, "Bulk Tool modifier",-3.4F,
+                                EntityAttributeModifier.Operation.ADDITION));
             } else {
                 // Default attributes
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                ATTACK_DAMAGE_MODIFIER_ID,
-                                "Tool modifier",
-                                8.0,
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 8.0,
+                                EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
-                                ATTACK_SPEED_MODIFIER_ID,
-                                "Tool modifier",
-                                -2.9F,
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.9F,
+                                EntityAttributeModifier.Operation.ADDITION));
             }
 
             return builder.build();

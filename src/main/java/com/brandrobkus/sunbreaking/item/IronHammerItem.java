@@ -30,7 +30,7 @@ public class IronHammerItem extends TridentItem {
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     public IronHammerItem(Settings settings) {
-        super(settings.maxDamage(250)); // Set max durability here
+        super(settings.maxDamage(250));
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(
                 EntityAttributes.GENERIC_ATTACK_DAMAGE,
@@ -70,10 +70,8 @@ public class IronHammerItem extends TridentItem {
 
                     IronHammerProjectileEntity IronHammerEntity = new IronHammerProjectileEntity(world, playerEntity, stack);
 
-                    // Determine projectile speed based on Bulk enchantment
                     float velocity = hasBulk(stack) ? PROJECTILE_SPEED / 2.0F : PROJECTILE_SPEED;
 
-                    // Debug: Log velocity adjustment
                     System.out.println("IronHammerProjectileEntity velocity: " + velocity);
 
                     IronHammerEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, velocity, 1.0F);
@@ -82,7 +80,6 @@ public class IronHammerItem extends TridentItem {
                         IronHammerEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                     }
 
-                    // Spawn the entity
                     world.spawnEntity(IronHammerEntity);
 
                     world.playSoundFromEntity(null, IronHammerEntity, ModSounds.HAMMER_THROW, SoundCategory.PLAYERS,
@@ -135,41 +132,29 @@ public class IronHammerItem extends TridentItem {
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                ATTACK_DAMAGE_MODIFIER_ID, // Same UUID ensures replacement
-                                "Bulk Tool modifier",
-                                10.0, // Replace with 12.0 (8 base + 4 Bulk)
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_DAMAGE_MODIFIER_ID,
+                                "Bulk Tool modifier", 10.0,
+                                EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
-                                ATTACK_SPEED_MODIFIER_ID, // Same UUID ensures replacement
-                                "Bulk Tool modifier",
-                                -3.4F, // Replace with -3.4 (-2.9 base - 0.5 Bulk)
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                ATTACK_SPEED_MODIFIER_ID,
+                                "Bulk Tool modifier", -3.4F,
+                                EntityAttributeModifier.Operation.ADDITION));
             } else {
                 // Default attributes
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 ATTACK_DAMAGE_MODIFIER_ID,
-                                "Tool modifier",
-                                8.0,
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                "Tool modifier", 8.0,
+                                EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
                                 ATTACK_SPEED_MODIFIER_ID,
-                                "Tool modifier",
-                                -2.9F,
-                                EntityAttributeModifier.Operation.ADDITION
-                        )
-                );
+                                "Tool modifier", -2.9F,
+                                EntityAttributeModifier.Operation.ADDITION));
             }
 
             return builder.build();

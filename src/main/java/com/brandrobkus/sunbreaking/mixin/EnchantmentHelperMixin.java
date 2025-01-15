@@ -37,20 +37,22 @@ public abstract class EnchantmentHelperMixin {
                             || enchantment == Enchantments.RIPTIDE) {
                         possibleEntries.remove(i);
                     }
+
                 } else if (isIronHammer){
                         if (enchantment == Enchantments.CHANNELING
                                 || enchantment == Enchantments.IMPALING
                                 || enchantment == Enchantments.RIPTIDE
                                 || enchantment == ModEnchantments.ASHEN
-                                || enchantment == ModEnchantments.SUNSPOT
-                                || enchantment == ModEnchantments.IGNITION) {
+                                || enchantment == ModEnchantments.CHAR
+                                || enchantment == ModEnchantments.ERUPTION) {
                             possibleEntries.remove(i);
                         }
+
                 }else {
                     if (enchantment == ModEnchantments.BULK
                             || enchantment == ModEnchantments.ASHEN
-                            || enchantment == ModEnchantments.SUNSPOT
-                            || enchantment == ModEnchantments.IGNITION) {
+                            || enchantment == ModEnchantments.CHAR
+                            || enchantment == ModEnchantments.ERUPTION) {
                         possibleEntries.remove(i);
                     }
                 }
