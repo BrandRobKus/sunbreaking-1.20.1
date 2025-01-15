@@ -24,8 +24,8 @@ public class ModItems {
                     Text.translatable("item.sunbreaking.solar_upgrade_template.addition_slot"),
                     Text.translatable("item.sunbreaking.solar_upgrade_template.apply"),
                     Text.translatable("item.sunbreaking.solar_upgrade_template.base"),
-                    List.of(new Identifier("sunbreaking", "textures/item/base_slot.png")),
-                    List.of(new Identifier("sunbreaking", "textures/item/addition_slot.png"))));
+                    List.of(new Identifier("sunbreaking", "item/addition_slot")),
+                    List.of(new Identifier("sunbreaking", "item/base_slot"))));
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(Sunbreaking.MOD_ID, name), item);
