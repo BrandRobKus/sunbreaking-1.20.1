@@ -40,4 +40,5 @@ public class HammerAshenEnchantment extends Enchantment {
     public int getMaxLevel() {
         return 1;
     }
+
 }

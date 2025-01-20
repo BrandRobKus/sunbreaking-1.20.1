@@ -38,4 +38,5 @@ public class ModEnchantments {
     public static void registerModEnchantments() {
         System.out.println("Registering Mod Enchantments for Sunbreaking");
     }
+
 }
