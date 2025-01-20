@@ -14,5 +14,10 @@
   "item.sunbreaking.solar_upgrade_template.base_slot": "Solar Light",
   "item.sunbreaking.solar_upgrade_template.addition_slot": "Solar Upgrade",
   "item.sunbreaking.solar_upgrade_template.apply": "Apply",
-  "item.sunbreaking.solar_upgrade_template.base": "Base"
+  "item.sunbreaking.solar_upgrade_template.base": "Base",
+
+  "item.sunbreaking.sunbreakers_helmet": "Sunbreaker's Helmet",
+  "item.sunbreaking.sunbreakers_chestplate": "Sunbreaker's Chestplate",
+  "item.sunbreaking.sunbreakers_greaves": "Sunbreaker's Greaves",
+  "item.sunbreaking.sunbreakers_boots": "Sunbreaker's Boots"
 }

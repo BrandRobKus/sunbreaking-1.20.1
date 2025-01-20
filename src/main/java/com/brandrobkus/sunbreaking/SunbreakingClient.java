@@ -16,6 +16,7 @@ public class SunbreakingClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.HAMMER_PROJECTILE, HammerProjectileRenderer::new);
         EntityRendererRegistry.register(ModEntities.IRON_HAMMER_PROJECTILE, IronHammerProjectileRenderer::new);
         registerItemModels();
+        Sunbreaking.LOGGER.info("Client initialization complete");
 
     }
     private void registerItemModels() {

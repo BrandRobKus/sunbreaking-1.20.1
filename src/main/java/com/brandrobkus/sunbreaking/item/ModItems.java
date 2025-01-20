@@ -1,7 +1,9 @@
 package com.brandrobkus.sunbreaking.item;
 
 import com.brandrobkus.sunbreaking.Sunbreaking;
+import com.brandrobkus.sunbreaking.item.custom.ModArmorItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SmithingTemplateItem;
 import net.minecraft.registry.Registries;
@@ -26,6 +28,15 @@ public class ModItems {
                     Text.translatable("item.sunbreaking.solar_upgrade_template.base"),
                     List.of(new Identifier("sunbreaking", "item/addition_slot")),
                     List.of(new Identifier("sunbreaking", "item/base_slot"))));
+
+    public static final Item SUNBREAKERS_HELMET = registerItem("sunbreakers_helmet",
+            new ModArmorItem(ModArmorMaterials.SOLAR, ArmorItem.Type.HELMET, new FabricItemSettings().maxCount(1)));
+    public static final Item SUNBREAKERS_CHESTPLATE = registerItem("sunbreakers_chestplate",
+            new ArmorItem(ModArmorMaterials.SOLAR, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().maxCount(1)));
+    public static final Item SUNBREAKERS_GREAVES = registerItem("sunbreakers_greaves",
+            new ArmorItem(ModArmorMaterials.SOLAR, ArmorItem.Type.LEGGINGS, new FabricItemSettings().maxCount(1)));
+    public static final Item SUNBREAKERS_BOOTS = registerItem("sunbreakers_boots",
+            new ArmorItem(ModArmorMaterials.SOLAR, ArmorItem.Type.BOOTS, new FabricItemSettings().maxCount(1)));
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(Sunbreaking.MOD_ID, name), item);

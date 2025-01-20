@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "sunbreaking:sunbreakers_chestplate"
+    },
+    "title": "Sunbreaker Savant",
+    "description": "Create a full set of Sunbreaker's Armor.",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "sunbreaking:sunbreakers_armor",
+  "criteria": {
+    "full_sunbreaker_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["sunbreaking:sunbreakers_helmet"]
+          },
+          {
+            "items": ["sunbreaking:sunbreakers_chestplate"]
+          },
+          {
+            "items": ["sunbreaking:sunbreakers_greaves"]
+          },
+          {
+            "items": ["sunbreaking:sunbreakers_boots"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "full_sunbreaker_armor"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_star": {
+    "has_solar_light": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:nether_star"
+              "sunbreaking:solar_light"
             ]
           }
         ]
@@ -15,21 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sunbreaking:solar_light"
+        "recipe": "sunbreaking:sunbreakers_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_star",
+      "has_solar_light",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sunbreaking:solar_light",
-      "sunbreaking:solar_light_alternative"
+      "sunbreaking:sunbreakers_boots"
     ]
   },
   "sends_telemetry_event": false

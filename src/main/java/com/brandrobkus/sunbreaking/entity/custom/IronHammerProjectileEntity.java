@@ -60,6 +60,7 @@ public class IronHammerProjectileEntity extends PersistentProjectileEntity {
     @Override
     public void tick() {
         super.tick();
+        System.out.println("LOYALTY: " + this.dataTracker.get(LOYALTY));
 
         if (!hasLanded) {
             this.rotationX += 20.0f;

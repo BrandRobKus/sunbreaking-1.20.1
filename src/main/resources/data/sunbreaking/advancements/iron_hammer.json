@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "sunbreaking:iron_hammer"
+    },
+    "title": "Sunbreaking",
+    "description": "Obtain an Iron Throwing Hammer.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/magma.png"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sunbreaking:iron_hammer"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

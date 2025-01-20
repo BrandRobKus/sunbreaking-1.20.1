@@ -15,8 +15,14 @@ public class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.hammer"))
                     .icon(() -> new ItemStack(ModItems.SOLAR_LIGHT)).entries((displayContext, entries) -> {
 
-                        entries.add(ModItems.HAMMER_OF_SOL);
                         entries.add(ModItems.IRON_HAMMER);
+                        entries.add(ModItems.HAMMER_OF_SOL);
+
+                        entries.add(ModItems.SUNBREAKERS_HELMET);
+                        entries.add(ModItems.SUNBREAKERS_CHESTPLATE);
+                        entries.add(ModItems.SUNBREAKERS_GREAVES);
+                        entries.add(ModItems.SUNBREAKERS_BOOTS);
+
                         entries.add(ModItems.SOLAR_LIGHT);
                         entries.add(ModItems.SOLAR_UPGRADE_SMITHING_TEMPLATE);
 
