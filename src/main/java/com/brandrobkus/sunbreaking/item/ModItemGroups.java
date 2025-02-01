@@ -17,6 +17,8 @@ public class ModItemGroups {
 
                         entries.add(ModItems.IRON_HAMMER);
                         entries.add(ModItems.HAMMER_OF_SOL);
+                        entries.add(ModItems.BLAZING_HAMMER);
+                        entries.add(ModItems.BLAZING_APPEARANCE_SMITHING_TEMPLATE);
 
                         entries.add(ModItems.SUNBREAKERS_HELMET);
                         entries.add(ModItems.SUNBREAKERS_CHESTPLATE);

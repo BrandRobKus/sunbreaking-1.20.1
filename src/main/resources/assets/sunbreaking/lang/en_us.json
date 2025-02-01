@@ -1,10 +1,14 @@
 {
   "itemgroup.hammer": "Sunbreaking",
+
   "item.sunbreaking.hammer_of_sol": "Hammer of Sol",
+  "item.sunbreaking.blazing_hammer_of_sol": "Hammer of Sol (Blazing)",
   "item.sunbreaking.iron_hammer": "Iron Throwing Hammer",
+
   "item.sunbreaking.solar_light": "Solar Light",
   "item.sunbreaking.solar_smithing_template": "Solar Smithing Template",
-  "enchantment.sunbreaking.recall": "Recall",
+  "item.sunbreaking.blazing_appearance_smithing_template": "Hammer Appearance Template (Blazing)",
+
   "enchantment.sunbreaking.eruption": "Eruption",
   "enchantment.sunbreaking.char": "Char",
   "enchantment.sunbreaking.ashen": "Ashen",
@@ -15,6 +19,12 @@
   "item.sunbreaking.solar_upgrade_template.addition_slot": "Solar Upgrade",
   "item.sunbreaking.solar_upgrade_template.apply": "Apply",
   "item.sunbreaking.solar_upgrade_template.base": "Base",
+
+  "item.sunbreaking.blazing_appearance_template.title": "Hammer Of Sol",
+  "item.sunbreaking.blazing_appearance_template.base_slot": "Blaze Powder",
+  "item.sunbreaking.blazing_appearance_template.addition_slot": "Appearance Modifier",
+  "item.sunbreaking.blazing_appearance_template.apply": "Apply",
+  "item.sunbreaking.blazing_appearance_template.base": "Base",
 
   "item.sunbreaking.sunbreakers_helmet": "Sunbreaker's Helmet",
   "item.sunbreaking.sunbreakers_chestplate": "Sunbreaker's Chestplate",

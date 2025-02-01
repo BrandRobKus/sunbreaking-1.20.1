@@ -16,6 +16,7 @@ import java.util.List;
 public class ModItems {
 
     public static final Item HAMMER_OF_SOL = registerItem("hammer_of_sol", new HammerItem(new FabricItemSettings().maxCount(1)));
+    public static final Item BLAZING_HAMMER = registerItem("blazing_hammer_of_sol", new HammerItem(new FabricItemSettings().maxCount(1)));
     public static final Item IRON_HAMMER = registerItem("iron_hammer", new IronHammerItem(new FabricItemSettings().maxCount(1)));
     public static final Item SOLAR_LIGHT = registerItem("solar_light", new Item(new FabricItemSettings().maxCount(16)));
     public static final Item SOLAR_UPGRADE_SMITHING_TEMPLATE = registerItem(
@@ -26,6 +27,17 @@ public class ModItems {
                     Text.translatable("item.sunbreaking.solar_upgrade_template.addition_slot"),
                     Text.translatable("item.sunbreaking.solar_upgrade_template.apply"),
                     Text.translatable("item.sunbreaking.solar_upgrade_template.base"),
+                    List.of(new Identifier("sunbreaking", "item/addition_slot")),
+                    List.of(new Identifier("sunbreaking", "item/base_slot"))));
+
+    public static final Item BLAZING_APPEARANCE_SMITHING_TEMPLATE = registerItem(
+            "blazing_appearance_smithing_template",
+            new SmithingTemplateItem(
+                    Text.translatable("item.sunbreaking.blazing_appearance_template.title"),
+                    Text.translatable("item.sunbreaking.blazing_appearance_template.base_slot"),
+                    Text.translatable("item.sunbreaking.blazing_appearance_template.addition_slot"),
+                    Text.translatable("item.sunbreaking.blazing_appearance_template.apply"),
+                    Text.translatable("item.sunbreaking.blazing_appearance_template.base"),
                     List.of(new Identifier("sunbreaking", "item/addition_slot")),
                     List.of(new Identifier("sunbreaking", "item/base_slot"))));
 
