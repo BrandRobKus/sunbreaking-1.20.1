@@ -15,20 +15,27 @@ public class ModEntities {
 
     public static final EntityType<HammerProjectileEntity> HAMMER_PROJECTILE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(Sunbreaking.MOD_ID, "hammer_projectile"),
+            new Identifier("modid", "hammer_projectile"),
             FabricEntityTypeBuilder.<HammerProjectileEntity>create(SpawnGroup.MISC, HammerProjectileEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.5f, 0.5f))
+                    .dimensions(EntityDimensions.fixed(0.5f, 0.5f)) // Set appropriate dimensions
+                    .trackRangeBlocks(80)
                     .trackedUpdateRate(3)
                     .build()
     );
+
 
     public static final EntityType<IronHammerProjectileEntity> IRON_HAMMER_PROJECTILE = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(Sunbreaking.MOD_ID, "iron_hammer_projectile"),
             FabricEntityTypeBuilder.<IronHammerProjectileEntity>create(SpawnGroup.MISC, IronHammerProjectileEntity::new)
                     .dimensions(EntityDimensions.fixed(0.125f, 0.125f))
+                    .trackRangeBlocks(80)
                     .trackedUpdateRate(3)
                     .build()
     );
 
+    public static void registerModEntities() {
+        System.out.println("Registering entities for Sunbreaking Mod!");
+        // Additional registrations can go here
+    }
 }

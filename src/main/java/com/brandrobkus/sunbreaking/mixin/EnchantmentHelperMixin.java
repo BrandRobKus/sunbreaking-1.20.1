@@ -4,6 +4,7 @@ import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
@@ -71,10 +72,14 @@ public abstract class EnchantmentHelperMixin {
             cancellable = true
     )
     private static void filterIncompatibleEnchantedBooks(NbtList list, CallbackInfoReturnable<Map<Enchantment, Integer>> cir) {
+        if (net.minecraft.client.MinecraftClient.getInstance() == null
+                || net.minecraft.client.MinecraftClient.getInstance().player == null) {
+            return; // Safeguard against null player or client
+        }
+
         Map<Enchantment, Integer> enchantments = cir.getReturnValue();
 
-        if (net.minecraft.client.MinecraftClient.getInstance().player.currentScreenHandler instanceof AnvilScreenHandler anvilHandler) {
-
+        if (MinecraftClient.getInstance().player.currentScreenHandler instanceof AnvilScreenHandler anvilHandler) {
             ItemStack targetStack = anvilHandler.getSlot(0).getStack();
             ItemStack bookStack = anvilHandler.getSlot(1).getStack();
 
@@ -108,4 +113,5 @@ public abstract class EnchantmentHelperMixin {
             }
         }
     }
+
 }

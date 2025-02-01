@@ -26,8 +26,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
 public class HammerProjectileEntity extends PersistentProjectileEntity {
-    private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(net.minecraft.entity.projectile.TridentEntity.class, TrackedDataHandlerRegistry.BYTE);
-    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(net.minecraft.entity.projectile.TridentEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(HammerProjectileEntity.class, TrackedDataHandlerRegistry.BYTE);
+    private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(HammerProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private ItemStack hammerStack = new ItemStack(ModItems.HAMMER_OF_SOL);
     private boolean dealtDamage;
     public int returnTimer;
@@ -133,7 +133,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
 
     private boolean isOwnerAlive() {
         Entity entity = this.getOwner();
-        return entity == null || !entity.isAlive() ? false : !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
+        return entity != null && entity.isAlive() && (!(entity instanceof ServerPlayerEntity) || !((ServerPlayerEntity) entity).isSpectator());
     }
 
     @Override
@@ -262,6 +262,8 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
 
         if (nbt.contains("LOYALTY", NbtCompound.BYTE_TYPE)) {
             this.dataTracker.set(LOYALTY, nbt.getByte("LOYALTY"));
+        } else {
+            this.dataTracker.set(LOYALTY, (byte) 0);
         }
     }
 

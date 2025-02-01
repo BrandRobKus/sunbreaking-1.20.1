@@ -1,6 +1,7 @@
 package com.brandrobkus.sunbreaking;
 
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
+import com.brandrobkus.sunbreaking.entity.ModEntities;
 import com.brandrobkus.sunbreaking.item.ModItemGroups;
 import com.brandrobkus.sunbreaking.item.ModItems;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
@@ -18,5 +19,6 @@ public class Sunbreaking implements ModInitializer {
 		ModItems.registerModItems();
 		ModSounds.registerSounds();
 		ModEnchantments.registerModEnchantments();
+		ModEntities.registerModEntities();
 	}
 }

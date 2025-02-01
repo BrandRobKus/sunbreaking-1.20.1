@@ -17,7 +17,7 @@ public class ModItems {
 
     public static final Item HAMMER_OF_SOL = registerItem("hammer_of_sol", new HammerItem(new FabricItemSettings().maxCount(1)));
     public static final Item IRON_HAMMER = registerItem("iron_hammer", new IronHammerItem(new FabricItemSettings().maxCount(1)));
-    public static final Item SOLAR_LIGHT = registerItem("solar_light", new Item(new FabricItemSettings()));
+    public static final Item SOLAR_LIGHT = registerItem("solar_light", new Item(new FabricItemSettings().maxCount(16)));
     public static final Item SOLAR_UPGRADE_SMITHING_TEMPLATE = registerItem(
             "solar_upgrade_smithing_template",
             new SmithingTemplateItem(
