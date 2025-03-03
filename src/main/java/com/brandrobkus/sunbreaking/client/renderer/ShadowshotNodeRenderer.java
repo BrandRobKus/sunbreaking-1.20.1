@@ -30,10 +30,11 @@ public class ShadowshotNodeRenderer extends EntityRenderer<ShadowshotNodeEntity>
                        VertexConsumerProvider vertexConsumers, int light) {
         matrixStack.push();
 
-        // Apply dynamic scale
-        float scale = entity.getScale();  // Get the current scale from the entity
-        matrixStack.scale(scale, scale, scale);  // Apply scale to the entity
+        //dynamic scale
+        float scale = entity.getScale();
+        matrixStack.scale(scale, scale, scale);
 
+        //dynamic rotation
         matrixStack.translate(0.0, 0.0f, 0.0);
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(entity.getYaw()));
         matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(entity.getPitch()));
