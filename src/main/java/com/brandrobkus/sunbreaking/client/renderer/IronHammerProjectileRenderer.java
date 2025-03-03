@@ -37,7 +37,7 @@ public class IronHammerProjectileRenderer extends EntityRenderer<IronHammerProje
         float rotationX = IronhammerEntity.getRotationX();
         matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(rotationX));
 
-        matrixStack.scale(0.25F, 0.25F, 0.25F);
+        matrixStack.scale(1.75F, 1.75F, 1.75F);
 
         matrixStack.translate(0.1F, -0.3F, 0.0F);
 

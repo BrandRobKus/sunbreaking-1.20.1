@@ -1,10 +1,11 @@
 package com.brandrobkus.sunbreaking;
 
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
-import com.brandrobkus.sunbreaking.entity.ModEntities;
-import com.brandrobkus.sunbreaking.item.ModItemGroups;
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModEnchantments;
+import com.brandrobkus.sunbreaking.util.ModEntities;
+import com.brandrobkus.sunbreaking.util.ModItemGroups;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
+import com.brandrobkus.sunbreaking.util.ModModelPredicateProvider;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,11 @@ public class Sunbreaking implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModItemGroups.registerItemGroups();
-		ModItems.registerModItems();
-		ModSounds.registerSounds();
 		ModEnchantments.registerModEnchantments();
 		ModEntities.registerModEntities();
+		ModItemGroups.registerItemGroups();
+		ModItems.registerModItems();
+		ModModelPredicateProvider.registerModModel();
+		ModSounds.registerSounds();
 	}
 }

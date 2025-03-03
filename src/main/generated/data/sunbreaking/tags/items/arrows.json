@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "sunbreaking:shadowshot_arrow",
+    "minecraft:arrow",
+    "minecraft:spectral_arrow",
+    "minecraft:tipped_arrow"
+  ]
+}

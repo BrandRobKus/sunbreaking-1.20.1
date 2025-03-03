@@ -1,6 +1,6 @@
 package com.brandrobkus.sunbreaking.enchantment;
 
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -11,6 +11,7 @@ public class HammerAshenEnchantment extends Enchantment {
         super(weight, EnchantmentTarget.TRIDENT, slots);
     }
 
+    //Hammer Enchantment, increases radius of Hammer Explosion
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
         return stack.isOf(ModItems.HAMMER_OF_SOL);

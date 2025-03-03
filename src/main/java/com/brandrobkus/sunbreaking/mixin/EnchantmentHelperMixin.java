@@ -1,9 +1,10 @@
 package com.brandrobkus.sunbreaking.mixin;
 
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
+import com.brandrobkus.sunbreaking.util.ModEnchantments;
 import java.util.List;
 import java.util.Map;
 
+import com.brandrobkus.sunbreaking.item.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
@@ -30,8 +31,12 @@ public abstract class EnchantmentHelperMixin {
         if (stack.getItem() instanceof TridentItem) {
             List<EnchantmentLevelEntry> possibleEntries = cir.getReturnValue();
 
-            boolean isHammer = stack.getItem().getClass().getSimpleName().equals("HammerItem");
-            boolean isIronHammer = stack.getItem().getClass().getSimpleName().equals("IronHammerItem");
+            boolean isHammer = stack.getItem() instanceof HammerItem
+                    || stack.getItem() instanceof BlazingHammerItem
+                    || stack.getItem() instanceof HellbentHammerItem
+                    || stack.getItem() instanceof FlatHammerItem;
+
+            boolean isIronHammer = stack.getItem() instanceof IronHammerItem;
 
             for (int i = possibleEntries.size() - 1; i >= 0; i--) {
                 Enchantment enchantment = possibleEntries.get(i).enchantment;

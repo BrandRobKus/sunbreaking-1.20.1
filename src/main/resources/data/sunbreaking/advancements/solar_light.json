@@ -4,7 +4,7 @@
       "item": "sunbreaking:solar_light"
     },
     "title": "Sol Survivor",
-    "description": "Slay enough Withers to set their stars ablaze.",
+    "description": "Slay a Wither, and set their star ablaze.",
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true

@@ -3,11 +3,19 @@
 
   "item.sunbreaking.hammer_of_sol": "Hammer of Sol",
   "item.sunbreaking.blazing_hammer_of_sol": "Hammer of Sol (Blazing)",
+  "item.sunbreaking.hellbent_hammer_of_sol": "Hammer of Sol (Hellbent)",
+  "item.sunbreaking.2d_hammer_of_sol": "Hammer of Sol (Flattened)",
   "item.sunbreaking.iron_hammer": "Iron Throwing Hammer",
 
   "item.sunbreaking.solar_light": "Solar Light",
+  "item.sunbreaking.arc_light": "Arc Light",
+  "item.sunbreaking.void_light": "Void Light",
+
   "item.sunbreaking.solar_smithing_template": "Solar Smithing Template",
   "item.sunbreaking.blazing_appearance_smithing_template": "Hammer Appearance Template (Blazing)",
+  "item.sunbreaking.hellbent_appearance_smithing_template": "Hammer Appearance Template (Hellbent)",
+  "item.sunbreaking.flat_appearance_smithing_template": "Hammer Appearance Template (Flattened)",
+  "item.sunbreaking.hammer_appearance_smithing_template": "Hammer Appearance Template (Default Look)",
 
   "enchantment.sunbreaking.eruption": "Eruption",
   "enchantment.sunbreaking.char": "Char",
@@ -20,14 +28,56 @@
   "item.sunbreaking.solar_upgrade_template.apply": "Apply",
   "item.sunbreaking.solar_upgrade_template.base": "Base",
 
+  "item.sunbreaking.hammer_appearance_template.title": "Hammer of Sol",
+  "item.sunbreaking.hammer_appearance_template.base_slot": "Iron Ingot",
+  "item.sunbreaking.hammer_appearance_template.addition_slot": "Appearance Modifier",
+  "item.sunbreaking.hammer_appearance_template.apply": "Apply",
+  "item.sunbreaking.hammer_appearance_template.base": "Base",
+
   "item.sunbreaking.blazing_appearance_template.title": "Hammer Of Sol",
   "item.sunbreaking.blazing_appearance_template.base_slot": "Blaze Powder",
-  "item.sunbreaking.blazing_appearance_template.addition_slot": "Appearance Modifier",
+  "item.sunbreaking.blazing_appearance_template.addition_slot": "Blazing Style",
   "item.sunbreaking.blazing_appearance_template.apply": "Apply",
   "item.sunbreaking.blazing_appearance_template.base": "Base",
+
+  "item.sunbreaking.hellbent_appearance_template.title": "Hammer Of Sol",
+  "item.sunbreaking.hellbent_appearance_template.base_slot": "Blackstone",
+  "item.sunbreaking.hellbent_appearance_template.addition_slot": "Hellbent Style",
+  "item.sunbreaking.hellbent_appearance_template.apply": "Apply",
+  "item.sunbreaking.hellbent_appearance_template.base": "Base",
+
+  "item.sunbreaking.flat_appearance_template.title": "Hammer Of Sol",
+  "item.sunbreaking.flat_appearance_template.base_slot": "Paper",
+  "item.sunbreaking.flat_appearance_template.addition_slot": "Flat Style",
+  "item.sunbreaking.flat_appearance_template.apply": "Apply",
+  "item.sunbreaking.flat_appearance_template.base": "Base",
 
   "item.sunbreaking.sunbreakers_helmet": "Sunbreaker's Helmet",
   "item.sunbreaking.sunbreakers_chestplate": "Sunbreaker's Chestplate",
   "item.sunbreaking.sunbreakers_greaves": "Sunbreaker's Greaves",
-  "item.sunbreaking.sunbreakers_boots": "Sunbreaker's Boots"
+  "item.sunbreaking.sunbreakers_boots": "Sunbreaker's Boots",
+
+  "item.sunbreaking.shadowshot_bow": "Shadowshot",
+  "item.sunbreaking.shadowshot_arrow": "Shadowshot Arrow",
+
+  "item.sunbreaking.void_upgrade_template.title": "Bow",
+  "item.sunbreaking.void_upgrade_template.base_slot": "Void Light",
+  "item.sunbreaking.void_upgrade_template.addition_slot": "Void Upgrade",
+  "item.sunbreaking.void_upgrade_template.apply": "Apply",
+  "item.sunbreaking.void_upgrade_template.base": "Base",
+
+  "enchantment.sunbreaking.dilation": "Dilation",
+
+  "item.sunbreaking.stormcallers_bond": "Stormcaller's Bond",
+
+  "item.sunbreaking.wooden_glaive": "Wooden Glaive",
+  "item.sunbreaking.stone_glaive": "Stone Glaive",
+  "item.sunbreaking.iron_glaive": "Iron Glaive",
+  "item.sunbreaking.gold_glaive": "Gold Glaive",
+  "item.sunbreaking.diamond_glaive": "Diamond Glaive",
+  "item.sunbreaking.netherite_glaive": "Netherite Glaive",
+
+  "sounds.sunbreaking.shadowshot_node": "Shadowshot Node",
+  "sounds.sunbreaking.cooldown_end": "Super Weapon Ready"
+
 }

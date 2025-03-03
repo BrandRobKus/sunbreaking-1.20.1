@@ -1,7 +1,7 @@
 package com.brandrobkus.sunbreaking.mixin;
 
 import com.brandrobkus.sunbreaking.Sunbreaking;
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -30,9 +30,23 @@ public abstract class ItemRendererMixin {
         return value;
     }
     @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
+    public BakedModel useHellbentHammerModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        if (stack.isOf(ModItems.HELLBENT_HAMMER) && renderMode != ModelTransformationMode.GUI) {
+            return ((ItemRendererAccessor) this).mccourse$getModels().getModelManager().getModel(new ModelIdentifier(Sunbreaking.MOD_ID, "hellbent_hammer_of_sol_3d", "inventory"));
+        }
+        return value;
+    }
+    @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
     public BakedModel useIronHammerModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (stack.isOf(ModItems.IRON_HAMMER) && renderMode != ModelTransformationMode.GUI) {
             return ((ItemRendererAccessor) this).mccourse$getModels().getModelManager().getModel(new ModelIdentifier(Sunbreaking.MOD_ID, "iron_hammer_3d", "inventory"));
+        }
+        return value;
+    }
+    @ModifyVariable(method = "renderItem", at = @At(value = "HEAD"), argsOnly = true)
+    public BakedModel useArcBondModel(BakedModel value, ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        if (stack.isOf(ModItems.STORMCALLERS_BOND) && renderMode != ModelTransformationMode.GUI) {
+            return ((ItemRendererAccessor) this).mccourse$getModels().getModelManager().getModel(new ModelIdentifier(Sunbreaking.MOD_ID, "stormcallers_bond_3d", "inventory"));
         }
         return value;
     }

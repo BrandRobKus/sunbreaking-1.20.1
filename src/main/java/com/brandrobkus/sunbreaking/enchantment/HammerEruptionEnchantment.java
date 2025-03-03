@@ -1,6 +1,6 @@
 package com.brandrobkus.sunbreaking.enchantment;
 
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -11,6 +11,7 @@ public class HammerEruptionEnchantment extends Enchantment {
         super(weight, EnchantmentTarget.TRIDENT, slot);
     }
 
+    //Hammer enchantment, blows up blocks in explosion radius
     @Override
     public int getMinPower(int level) {
         return 20;

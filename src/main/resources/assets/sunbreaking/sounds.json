@@ -16,5 +16,17 @@
     "sounds": [
       "sunbreaking:hammer_return"
     ]
+  },
+  "shadowshot_node": {
+    "subtitle": "sounds.sunbreaking.shadowshot_node",
+    "sounds": [
+      "sunbreaking:shadowshot_node"
+    ]
+  },
+  "cooldown_end": {
+    "subtitle": "sounds.sunbreaking.cooldown_end",
+    "sounds": [
+      "sunbreaking:cooldown_end"
+    ]
   }
 }

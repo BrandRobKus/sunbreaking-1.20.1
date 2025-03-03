@@ -378,6 +378,11 @@
 			"rotation": [0, 90, 0],
 			"translation": [-3, 0, 0],
 			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"rotation": [45, 0, 0],
+			"translation": [0, 3.5, 0],
+			"scale": [0.125, 0.125, 0.125]
 		}
 	}
 }

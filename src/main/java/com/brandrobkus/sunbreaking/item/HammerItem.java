@@ -1,6 +1,6 @@
 package com.brandrobkus.sunbreaking.item;
 
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
+import com.brandrobkus.sunbreaking.util.ModEnchantments;
 import com.brandrobkus.sunbreaking.entity.custom.HammerProjectileEntity;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
 import com.google.common.collect.ImmutableMultimap;
@@ -25,8 +25,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 public class HammerItem extends TridentItem {
     public static final int USE_THRESHOLD = 10;
     public static final float PROJECTILE_SPEED = 2.5F;
@@ -44,8 +42,6 @@ public class HammerItem extends TridentItem {
                 new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.8F, EntityAttributeModifier.Operation.ADDITION)
         );
         this.attributeModifiers = builder.build();
-
-
     }
 
     @Override
@@ -134,24 +130,23 @@ public class HammerItem extends TridentItem {
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                ATTACK_DAMAGE_MODIFIER_ID, "Bulk Tool modifier",12.0,
+                                ATTACK_DAMAGE_MODIFIER_ID, "Bulk Tool modifier",14.0,
                                 EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
-                                ATTACK_SPEED_MODIFIER_ID, "Bulk Tool modifier",-3.4F,
+                                ATTACK_SPEED_MODIFIER_ID, "Bulk Tool modifier",-3.3F,
                                 EntityAttributeModifier.Operation.ADDITION));
             } else {
-                // Default attributes
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 8.0,
+                                ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 9.0,
                                 EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
-                                ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.9F,
+                                ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.8F,
                                 EntityAttributeModifier.Operation.ADDITION));
             }
 
@@ -171,12 +166,17 @@ public class HammerItem extends TridentItem {
     }
 
     @Override
+    public int getEnchantability() {
+        return 25;
+    }
+
+    @Override
     public boolean isDamageable() {
         return true;
     }
 
     @Override
-    public int getEnchantability() {
-        return 10;
+    public boolean isFireproof(){
+        return true;
     }
 }

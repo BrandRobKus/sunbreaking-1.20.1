@@ -1,8 +1,8 @@
 package com.brandrobkus.sunbreaking.entity.custom;
 
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantmentHelper;
-import com.brandrobkus.sunbreaking.entity.ModEntities;
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModEntities;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -107,7 +107,7 @@ public class IronHammerProjectileEntity extends PersistentProjectileEntity {
 
     private boolean isOwnerAlive() {
         Entity entity = this.getOwner();
-        return entity == null || !entity.isAlive() ? false : !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
+        return entity != null && entity.isAlive() && (!(entity instanceof ServerPlayerEntity) || !entity.isSpectator());
     }
 
     @Override
@@ -135,7 +135,7 @@ public class IronHammerProjectileEntity extends PersistentProjectileEntity {
         }
 
         Entity entity2 = this.getOwner();
-        DamageSource damageSource = this.getDamageSources().trident(this, (Entity)(entity2 == null ? this : entity2));
+        DamageSource damageSource = this.getDamageSources().trident(this, entity2 == null ? this : entity2);
         this.dealtDamage = true;
         SoundEvent soundEvent = ModSounds.HAMMER_HIT;
         if (entity.damage(damageSource, f)) {

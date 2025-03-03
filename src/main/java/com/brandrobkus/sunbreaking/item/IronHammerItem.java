@@ -1,6 +1,6 @@
 package com.brandrobkus.sunbreaking.item;
 
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
+import com.brandrobkus.sunbreaking.util.ModEnchantments;
 import com.brandrobkus.sunbreaking.entity.custom.IronHammerProjectileEntity;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
 import com.google.common.collect.ImmutableMultimap;
@@ -133,13 +133,13 @@ public class IronHammerItem extends TridentItem {
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 ATTACK_DAMAGE_MODIFIER_ID,
-                                "Bulk Tool modifier", 10.0,
+                                "Bulk Tool modifier", 11.0,
                                 EntityAttributeModifier.Operation.ADDITION));
                 builder.put(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
                                 ATTACK_SPEED_MODIFIER_ID,
-                                "Bulk Tool modifier", -3.4F,
+                                "Bulk Tool modifier", -3.3F,
                                 EntityAttributeModifier.Operation.ADDITION));
             } else {
                 // Default attributes
@@ -153,7 +153,7 @@ public class IronHammerItem extends TridentItem {
                         EntityAttributes.GENERIC_ATTACK_SPEED,
                         new EntityAttributeModifier(
                                 ATTACK_SPEED_MODIFIER_ID,
-                                "Tool modifier", -2.9F,
+                                "Tool modifier", -2.8F,
                                 EntityAttributeModifier.Operation.ADDITION));
             }
 

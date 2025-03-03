@@ -1,18 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "B",
-    "I",
-    "S"
+    "CBC",
+    "CIC",
+    "CSC"
   ],
   "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
     "B": {
       "item": "minecraft:blaze_powder"
     },
     "I": {
       "item": "minecraft:iron_ingot"
     },
-    "s": {
+    "S": {
       "item": "minecraft:stick"
     }
   },

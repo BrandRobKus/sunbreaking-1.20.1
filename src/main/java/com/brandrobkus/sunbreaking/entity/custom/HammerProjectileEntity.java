@@ -1,9 +1,9 @@
 package com.brandrobkus.sunbreaking.entity.custom;
 
 import com.brandrobkus.sunbreaking.enchantment.ModEnchantmentHelper;
-import com.brandrobkus.sunbreaking.enchantment.ModEnchantments;
-import com.brandrobkus.sunbreaking.entity.ModEntities;
-import com.brandrobkus.sunbreaking.item.ModItems;
+import com.brandrobkus.sunbreaking.util.ModEnchantments;
+import com.brandrobkus.sunbreaking.util.ModEntities;
+import com.brandrobkus.sunbreaking.util.ModItems;
 import com.brandrobkus.sunbreaking.sound.ModSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -17,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -50,7 +51,6 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         this.hasEruption = hasEruption(stack);
     }
 
-    private boolean hasAshen = false;
     private boolean hasEruption = false;
     private boolean hasChar = false;
 
@@ -102,6 +102,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
                 this.setNoClip(true);
                 Vec3d vec3d = entity.getEyePos().subtract(this.getPos());
                 this.setPos(this.getX(), this.getY() + vec3d.y * 0.015 * (double) i, this.getZ());
+
                 if (this.getWorld().isClient) {
                     this.lastRenderY = this.getY();
                 }
@@ -119,21 +120,56 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
                 this.triggerExplosion();
 
                 if (this.dataTracker.get(LOYALTY) == 0) {
-                    this.rotationZ = 30.0f; // Set rotation to 150 degrees
+                    this.rotationZ = 30.0f;
                 }
-                this.setVelocity(0, 0, 0); // Stop movement
+                this.setVelocity(0, 0, 0);
                 this.hasLanded = true;
             }
             if (this.inGroundTime > 4 && !this.dealtDamage) {
                 this.dealtDamage = true;
             }
 
+        if (this.getWorld().isClient && !hasLanded) {
+            double speedX = 0.0;
+            double speedY = 0.0;
+            double speedZ = 0.0;
+            double sizeFactor = 2.0;
+
+            this.getWorld().addParticle(ParticleTypes.WHITE_ASH,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+            this.getWorld().addParticle(ParticleTypes.SMALL_FLAME,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+            this.getWorld().addParticle(ParticleTypes.SMOKE,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+            this.getWorld().addParticle(ParticleTypes.LARGE_SMOKE,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+            this.getWorld().addParticle(ParticleTypes.LAVA,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+        } else {
+            double speedX = 0.0;
+            double speedY = 0.0;
+            double speedZ = 0.0;
+            double sizeFactor = 2.0;
+
+            this.getWorld().addParticle(ParticleTypes.SMOKE,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+            this.getWorld().addParticle(ParticleTypes.FLAME,
+                    this.getX(), this.getY(), this.getZ(),
+                    speedX * sizeFactor, speedY * sizeFactor, speedZ * sizeFactor);
+        }
+
             super.tick();
         }
 
     private boolean isOwnerAlive() {
         Entity entity = this.getOwner();
-        return entity != null && entity.isAlive() && (!(entity instanceof ServerPlayerEntity) || !((ServerPlayerEntity) entity).isSpectator());
+        return entity != null && entity.isAlive() && (!(entity instanceof ServerPlayerEntity) || !entity.isSpectator());
     }
 
     @Override
@@ -156,13 +192,12 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         Entity entity = entityHitResult.getEntity();
         float f = 8.0F;
 
-        // Additional damage logic if needed
         if (entity instanceof LivingEntity livingEntity) {
             f += EnchantmentHelper.getAttackDamage(this.hammerStack, livingEntity.getGroup());
         }
 
         Entity entity2 = this.getOwner();
-        DamageSource damageSource = this.getDamageSources().trident(this, (Entity)(entity2 == null ? this : entity2));
+        DamageSource damageSource = this.getDamageSources().trident(this, entity2 == null ? this : entity2);
         this.dealtDamage = true;
         SoundEvent soundEvent = ModSounds.HAMMER_HIT;
         if (entity.damage(damageSource, f)) {
@@ -225,7 +260,6 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
                         explosionSourceType
                 );
 
-                // Debug: Explosion triggered log
                 System.out.println("Explosion triggered with radius: " + blastRadius + ", block destruction: " + allowBlockDestruction);
             }
         }
@@ -298,7 +332,7 @@ public class HammerProjectileEntity extends PersistentProjectileEntity {
         return true;
     }
 
-    // Add getter for rotationZ
+
     public float getRotationZ() {
         return this.rotationZ;
     }
