@@ -11,12 +11,9 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.LivingEntity;
 
 public class GlaiveItem extends SwordItem {
