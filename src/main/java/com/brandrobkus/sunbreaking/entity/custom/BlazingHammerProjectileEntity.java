@@ -176,10 +176,6 @@ public class BlazingHammerProjectileEntity extends PersistentProjectileEntity {
         return this.hammerStack.copy();
     }
 
-    public boolean isEnchanted() {
-        return this.dataTracker.get(ENCHANTED);
-    }
-
     @Nullable
     @Override
     protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
@@ -226,7 +222,7 @@ public class BlazingHammerProjectileEntity extends PersistentProjectileEntity {
             BlockPos impactPos = this.getBlockPos();
             BlockPos adjustedPos = impactPos.up(1);
             
-            if (this.getOwner() instanceof PlayerEntity player) {
+            if (this.getOwner() instanceof PlayerEntity) {
                 ItemStack stack = this.hammerStack;
 
                 System.out.println("Player's main hand item: " + stack.getItem().getName().getString());

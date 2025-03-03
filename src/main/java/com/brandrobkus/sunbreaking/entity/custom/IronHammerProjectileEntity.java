@@ -115,10 +115,6 @@ public class IronHammerProjectileEntity extends PersistentProjectileEntity {
         return this.ironHammerStack.copy();
     }
 
-    public boolean isEnchanted() {
-        return this.dataTracker.get(ENCHANTED);
-    }
-
     @Nullable
     @Override
     protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {

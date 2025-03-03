@@ -76,12 +76,6 @@ public class ModEntities {
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, ShadowshotNodeEntity::new)
                     .dimensions(EntityDimensions.fixed(2f, 2f)).build());
 
-    public static final EntityType<ShadowshotTetherEntity> SHADOWSHOT_TETHER = Registry.register
-            (Registries.ENTITY_TYPE,
-            new Identifier(Sunbreaking.MOD_ID, "shadowshot_tether"),
-            FabricEntityTypeBuilder.<ShadowshotTetherEntity>create(SpawnGroup.MISC, ShadowshotTetherEntity::new)
-                    .dimensions(EntityDimensions.fixed(1f, 1f)).build());
-
     public static final EntityType<StormCloudEntity> STORM_CLOUD = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(Sunbreaking.MOD_ID, "storm_cloud"),

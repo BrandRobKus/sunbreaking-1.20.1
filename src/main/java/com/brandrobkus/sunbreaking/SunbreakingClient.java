@@ -5,7 +5,6 @@ import com.brandrobkus.sunbreaking.util.ModEntities;
 import com.brandrobkus.sunbreaking.client.renderer.ModModelLayers;
 import com.brandrobkus.sunbreaking.client.renderer.ShadowshotNodeModel;
 import com.brandrobkus.sunbreaking.client.renderer.ShadowshotNodeRenderer;
-import com.brandrobkus.sunbreaking.client.renderer.ShadowshotTetherRenderer;
 import com.brandrobkus.sunbreaking.util.ModItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -27,8 +26,6 @@ public class SunbreakingClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SHADOWSHOT_ARROW, ShadowshotArrowEntityRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.SHADOWSHOT_NODE, ShadowshotNodeRenderer::new);
-
-        EntityRendererRegistry.register(ModEntities.SHADOWSHOT_TETHER, ShadowshotTetherRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.NODE, ShadowshotNodeModel::getTexturedModelData);
         registerItemModels();
