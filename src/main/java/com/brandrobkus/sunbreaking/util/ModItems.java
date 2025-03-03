@@ -101,6 +101,7 @@ public class ModItems {
             new ShadowshotArrowItem(new FabricItemSettings()));
 
     public static final Item VOID_LIGHT = registerItem("void_light", new Item(new FabricItemSettings().maxCount(16).fireproof()));
+    public static final Item VOID_LIGHT_SHARD = registerItem("void_light_shard", new Item(new FabricItemSettings()));
     public static final Item VOID_UPGRADE_SMITHING_TEMPLATE = registerItem(
             "void_upgrade_smithing_template",
             new SmithingTemplateItem(

@@ -27,6 +27,11 @@ public class ShadowshotNodeEntity extends Entity {
     private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(ShadowshotNodeEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private int timeAlive = 0;
     public int timeToDie = 260;
+
+    private float getNodeRadius() {
+        return hasDilation() ? 9.0f : 6.0f;
+    }
+
     private UUID ownerUUID;
 
     public ShadowshotNodeEntity(EntityType<? extends ShadowshotNodeEntity> type, World world) {
@@ -70,7 +75,8 @@ public class ShadowshotNodeEntity extends Entity {
     private void applyEffectsToNearbyEntities() {
         List<LivingEntity> nearbyEntities = getWorld().getEntitiesByClass(
                 LivingEntity.class,
-                new Box(getX() - 7, getY() - 7, getZ() - 7, getX() + 7, getY() + 7, getZ() + 7),
+                new Box(getX() - getNodeRadius(), getY() - getNodeRadius(), getZ() - getNodeRadius(),
+                        getX() + getNodeRadius(), getY() + getNodeRadius(), getZ() + getNodeRadius()),
                 entity -> true
         );
 
@@ -140,11 +146,7 @@ public class ShadowshotNodeEntity extends Entity {
     private void spawnParticles() {
         World world = this.getWorld();
         if (world.isClient) {
-            float maxRadius = 6.0F;
-            //double maxRadius = hasDilation() ? 9.0 : baseMaxRadius;
-            if(hasDilation()){
-                maxRadius = 9.0F;
-            }
+            float maxRadius = getNodeRadius();
 
             double maxSmallRadius = 0.5;
             int particleCount = 100;
@@ -203,4 +205,5 @@ public class ShadowshotNodeEntity extends Entity {
         this.setPitch(newPitch);
         this.setRotation(newPitch, this.getPitch());
     }
+
 }

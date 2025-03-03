@@ -36,6 +36,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SHADOWSHOT_BOW);
                         entries.add(ModItems.SHADOWSHOT_ARROW);
                         entries.add(ModItems.VOID_LIGHT);
+                        entries.add(ModItems.VOID_LIGHT_SHARD);
                         entries.add(ModItems.VOID_UPGRADE_SMITHING_TEMPLATE);
 
                         entries.add(ModItems.STORMCALLERS_BOND);

@@ -1,5 +1,6 @@
 package com.brandrobkus.sunbreaking.item;
 
+import com.brandrobkus.sunbreaking.entity.custom.ShadowshotArrowEntity;
 import com.brandrobkus.sunbreaking.util.ModItems;
 import com.brandrobkus.sunbreaking.util.ModTags;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -57,6 +58,11 @@ public class ShadowshotBowItem extends BowItem {
                     if (!world.isClient) {
                         ArrowItem arrowItem = (ArrowItem) (itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
                         PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(world, itemStack, playerEntity);
+
+                        if (persistentProjectileEntity instanceof ShadowshotArrowEntity shadowshotArrow) {
+                            shadowshotArrow.setBowStack(stack);
+                        }
+
                         if (isShadowshotArrow) {
                             persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 4.75F, 0.0F);
                         } else {
@@ -81,7 +87,7 @@ public class ShadowshotBowItem extends BowItem {
                         }
 
                         stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(playerEntity.getActiveHand()));
-                        if (bl2 || playerEntity.getAbilities().creativeMode && (itemStack.isOf(Items.SPECTRAL_ARROW) || itemStack.isOf(Items.TIPPED_ARROW) || itemStack.isOf(com.brandrobkus.sunbreaking.util.ModItems.SHADOWSHOT_ARROW))) {
+                        if (bl2 || playerEntity.getAbilities().creativeMode && (itemStack.isOf(Items.SPECTRAL_ARROW) || itemStack.isOf(Items.TIPPED_ARROW) || itemStack.isOf(ModItems.SHADOWSHOT_ARROW))) {
                             persistentProjectileEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                         }
 
@@ -117,4 +123,5 @@ public class ShadowshotBowItem extends BowItem {
             }
         }
     }
+
 }

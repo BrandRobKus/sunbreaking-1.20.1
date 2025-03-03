@@ -27,6 +27,16 @@ public class ShadowshotArrowEntity extends PersistentProjectileEntity {
         super(ModEntities.SHADOWSHOT_ARROW, owner, world);
     }
 
+    private ItemStack bowStack = ItemStack.EMPTY;
+
+    public void setBowStack(ItemStack stack) {
+        this.bowStack = stack.copy();
+    }
+
+    public ItemStack getBowStack() {
+        return this.bowStack;
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -51,7 +61,7 @@ public class ShadowshotArrowEntity extends PersistentProjectileEntity {
         Direction impactFace = Direction.getFacing(velocity.x, velocity.y, velocity.z).getOpposite();
 
         Vec3d spawnPos = this.getPos();
-        double offsetDistance = 0.5; // Adjust to control visibility
+        double offsetDistance = 0.5;
 
         if (impactFace == Direction.UP || impactFace == Direction.DOWN) {
             spawnPos = spawnPos.add(0, impactFace == Direction.UP ? offsetDistance : -offsetDistance, 0);
@@ -69,6 +79,8 @@ public class ShadowshotArrowEntity extends PersistentProjectileEntity {
         if (this.getOwner() instanceof PlayerEntity player) {
             nodeEntity.setOwner(player);
         }
+
+        nodeEntity.setBowStack(this.bowStack); // <-- Pass the bow stack to the node
 
         this.getWorld().spawnEntity(nodeEntity);
     }

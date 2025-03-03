@@ -4,7 +4,7 @@
       "item": "sunbreaking:shadowshot_bow"
     },
     "title": "Null And Void",
-    "description": "Upgrade your Bow. Cast a shadow on your enemies.",
+    "description": "Upgrade your Bow to a more sinister model.",
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
